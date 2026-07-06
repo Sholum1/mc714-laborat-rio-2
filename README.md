@@ -106,3 +106,7 @@ Uma sequência típica de utilização do sistema é:
 3. Conectar os nós utilizando o comando `connect`.
 4. Verificar as conexões com `peers`.
 5. Utilizar os demais comandos para testar o sistema distribuído, como envio de mensagens, eleição de líder, mutex distribuído e compartilhamento de recursos.
+
+
+## Breve apresentação de uso:
+[https://docs.google.com/videos/d/1fvRMGs6IzJr8UzoDYJdfa9Xjp-VaPgajCl-ltasKzFY/edit?usp=sharing]
