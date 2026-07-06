@@ -11,7 +11,7 @@ Todos os nós devem possuir a linguagem **GNU Guile** instalada. Recomenda-se ut
 Cada nó deve executar o arquivo:
 
 ```bash
-guile algorithms.scm
+guile algorithms.scm <ip-do-cluster>
 ```
 
 ## Obtendo o `sturdyref`
