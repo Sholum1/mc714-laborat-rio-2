@@ -14,6 +14,69 @@ Cada nó deve executar o arquivo:
 guile algorithms.scm <ip-do-cluster>
 ```
 
+## Executando o cluster utilizando Guix
+
+Caso utilize o **Guix** (como sistema operacional ou gerenciador de pacotes), é possível criar facilmente um ambiente isolado para cada nó do cluster.
+
+Primeiro, execute:
+
+```bash
+guix system container node.scm --share=algorithms.scm
+```
+
+Esse comando exibirá um **script** responsável por criar um container contendo o ambiente necessário para executar um nó do sistema.
+
+Execute o script com privilégios de administrador:
+
+```bash
+sudo <script>
+```
+
+Repita esse processo para criar todos os containers desejados (recomenda-se **três ou mais**).
+
+### Conectando os containers
+
+Após criar os containers, anote o **PID** de cada um e execute:
+
+```bash
+sudo ./connect-containers.scm <pid1> <pid2> <pid3> ...
+```
+
+Esse script configura a comunicação em rede entre os containers, permitindo que eles formem um cluster.
+
+### Acessando um container
+
+Para abrir um terminal dentro de um container, utilize:
+
+```bash
+guix container exec <PID> /run/current-system/profile/bin/bash --login
+```
+
+Substitua `<PID>` pelo identificador do container desejado.
+
+### Descobrindo o endereço IP
+
+Dentro de cada container, descubra seu endereço IP com:
+
+```bash
+ip addr show
+```
+
+Esse endereço será utilizado para iniciar o nó.
+
+### Iniciando o nó
+
+Por fim, execute:
+
+```bash
+guile algorithms.scm <ip-do-cluster>
+```
+
+Substitua `<ip-do-cluster>` pelo endereço IP obtido no passo anterior.
+
+Repita esse procedimento para todos os containers que farão parte do cluster.
+
+
 ## Obtendo o `sturdyref`
 
 Ao iniciar, cada nó exibirá uma mensagem semelhante à seguinte:
