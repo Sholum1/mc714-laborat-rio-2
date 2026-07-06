@@ -22,9 +22,14 @@
 (let ((count (length pids)))
   (do ((i 1 (+ i 1)))
       ((> i count))
-    (let ((ns (format #f "node-~a" i)))
-      (run (format #f "sudo ip netns delete ~a" ns)))))
+    (let ((ns   (format #f "node-~a" i))
+          (veth (format #f "veth-node-~a" i)))
+      (run (format #f "ip netns delete ~a" ns))
 
-(run "sudo ip link delete br0")
+      (run (format #f "ip link delete ~a" veth))))
+
+  (run "ip link set br0 down")
+
+  (run "ip link delete br0"))
 
 (format #t "\nCleanup completed.\n")

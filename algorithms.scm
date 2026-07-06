@@ -376,7 +376,7 @@
               (() #t)
 	      (("help") (help))
 	      (("connect" sturdyref) ($ node 'connect! sturdyref))
-	      (("send" id . txt) ($ node 'send! (string->number id) (string-join txt " ")))
+	      (("send" id . txt) ($ node 'send! id (string-join txt " ")))
               (("lock") ($ node 'lock!))
               (("unlock") ($ node 'unlock!))
               (("elect") ($ node 'elect!))
